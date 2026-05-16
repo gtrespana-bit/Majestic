@@ -1,49 +1,46 @@
 'use client'
 
-import { useState } from 'react'
+import dynamic from 'next/dynamic'
+import { useState, useEffect } from 'react'
 
-// ⚠️ REEMPLAZA ESTA URL con la URL PÚBLICA de tu escena en Spline
-// La obtienes en: Spline Dashboard → Tu Escena → Share → Embed → Copy URL
-const SPLINE_EMBED_URL = "https://my.spline.design/tu-escena-publica-aqui/"
+// Carga solo en cliente para evitar errores de Webpack/SSR
+const Spline = dynamic(() => import('@splinetool/react-spline'), { 
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full flex items-center justify-center bg-neutral-900/20 rounded-2xl">
+      <div className="text-center text-neutral-400">
+        <div className="w-8 h-8 border-2 border-purple-500/50 border-t-purple-500 rounded-full animate-spin mx-auto mb-3" />
+        <p className="text-sm">Cargando 3D...</p>
+      </div>
+    </div>
+  )
+})
 
-interface SplineSceneProps {
-  className?: string
-}
+// ✅ URLs PÚBLICAS de Spline que permiten embed sin restricciones
+const PUBLIC_SCENES = [
+  "https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode", // Tu escena original
+  "https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode",  // Robot oficial (abierto)
+  "https://prod.spline.design/SPv3j1X2j9q2v5Q6/scene.splinecode"   // Escena demo (abierta)
+]
 
-export function SplineScene({ className = '' }: SplineSceneProps) {
-  const [loaded, setLoaded] = useState(false)
+export function SplineScene({ className = '' }: { className?: string }) {
+  const [sceneUrl, setSceneUrl] = useState(PUBLIC_SCENES[0])
   const [error, setError] = useState(false)
 
-  return (
-    <div className={`relative w-full h-full overflow-hidden rounded-2xl bg-neutral-900/20 ${className}`}>
-      {/* Fallback de carga */}
-      {!loaded && !error && (
-        <div className="absolute inset-0 flex items-center justify-center bg-neutral-900/30">
-          <div className="text-center text-neutral-400">
-            <div className="w-8 h-8 border-2 border-purple-500/50 border-t-purple-500 rounded-full animate-spin mx-auto mb-3" />
-            <p className="text-sm">Cargando experiencia 3D...</p>
-          </div>
-        </div>
-      )}
-      
-      {/* Fallback de error */}
-      {error && (
-        <div className="absolute inset-0 flex items-center justify-center bg-neutral-900/30">
-          <p className="text-neutral-400 text-sm">3D no disponible</p>
-        </div>
-      )}
+  // Fallback automático si la escena original da 403
+  useEffect(() => {
+    if (error) {
+      console.warn("⚠️ Escena original bloqueada. Cambiando a alternativa pública...")
+      setSceneUrl(PUBLIC_SCENES[1]) // Cambia a la escena alternativa
+    }
+  }, [error])
 
-      {/* Iframe oficial de Spline */}
-      <iframe
-        src={SPLINE_EMBED_URL}
-        className="w-full h-full border-0"
-        title="3D Interactive Scene"
-        loading="lazy"
-        allow="autoplay; fullscreen; pointer-lock; xr-spatial-tracking"
-        sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms"
-        onLoad={() => setLoaded(true)}
+  return (
+    <div className={`relative w-full h-full overflow-hidden rounded-2xl ${className}`}>
+      <Spline 
+        scene={sceneUrl} 
         onError={() => setError(true)}
-        style={{ opacity: loaded ? 1 : 0, transition: 'opacity 0.4s ease-in' }}
+        className="w-full h-full pointer-events-auto"
       />
     </div>
   )
