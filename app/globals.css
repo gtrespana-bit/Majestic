@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 🎨 VARIABLES DE TEMA */
 :root, [data-theme="dark"] {
   --bg: 215 28% 9%;
   --fg: 210 20% 96%;
@@ -15,14 +16,14 @@
   --accent: 270 65% 55%;
 }
 [data-theme="light"] {
-  --bg: 210 20% 98%; /* Gris muy claro, no blanco puro */
-  --fg: 222 47% 8%;  /* Casi negro, máximo contraste */
+  --bg: 210 20% 98%;
+  --fg: 222 47% 8%;
   --card: 0 0% 100%;
   --card-fg: 222 47% 8%;
   --primary: 221 83% 45%;
   --primary-fg: 0 0% 100%;
   --muted: 210 15% 92%;
-  --muted-fg: 215 16% 35%; /* Texto secundario legible */
+  --muted-fg: 215 16% 35%;
   --border: 214 20% 88%;
   --accent: 195 80% 45%;
 }
@@ -49,6 +50,7 @@
   }
 }
 
+/* 🎬 CINEMÁTICO + UI */
 .cinematic-grain {
   position: fixed; inset: 0; pointer-events: none; z-index: 5; opacity: 0.035; mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
@@ -58,6 +60,7 @@
   background: radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.5) 100%);
 }
 
+/* 🖱️ CURSOR BASE & FALLBACKS */
 .cursor-dot, .cursor-ring, .cursor-glow {
   position: fixed; top: 0; left: 0; pointer-events: none; z-index: 99999; will-change: transform;
 }
@@ -66,6 +69,7 @@
 .cursor-ring.hover { width: 44px; height: 44px; border-color: hsl(var(--primary)); }
 .cursor-glow { width: 350px; height: 350px; background: radial-gradient(circle, hsla(var(--primary), 0.18) 0%, transparent 75%); transform: translate(-50%, -50%); }
 
+/* 🌊 EFECTO LÍQUIDO */
 .liquid-ripple {
   position: fixed; border-radius: 50%; pointer-events: none; z-index: 10;
   background: radial-gradient(circle, hsla(var(--primary), 0.4) 0%, transparent 70%);
@@ -77,6 +81,7 @@
   100% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
 }
 
+/* 🎨 LUZ AMBIENTAL */
 .aurora-bg {
   position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.6;
   background: 
@@ -85,17 +90,45 @@
   filter: blur(60px); transition: background 0.3s;
 }
 
+/* 🌈 BORDE GRADIENTE ANIMADO (OPTIMIZADO) */
 .gradient-border {
-  position: relative; border-radius: 1rem; padding: 1px; overflow: hidden; background: transparent;
+  position: relative;
+  border-radius: 1rem;
+  padding: 1px;
+  overflow: hidden;
+  background: transparent;
+  isolation: isolate;
 }
 .gradient-border::before {
-  content: ""; position: absolute; top: 50%; left: 50%; width: 200%; height: 200%;
-  background: conic-gradient(from 0deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)));
-  transform: translate(-50%, -50%); animation: spin-border 6s linear infinite; z-index: 0; will-change: transform;
+  content: "";
+  position: absolute;
+  inset: -60%;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    hsl(var(--primary)),
+    hsl(var(--accent)),
+    hsl(var(--primary)/0.7),
+    hsl(var(--accent)/0.9),
+    hsl(var(--primary))
+  );
+  transform-origin: center;
+  animation: spin-border 10s linear infinite;
+  z-index: 0;
+  will-change: transform;
 }
-.gradient-border > * { position: relative; z-index: 1; background: hsl(var(--card)); border-radius: inherit; height: 100%; }
-@keyframes spin-border { to { transform: translate(-50%, -50%) rotate(360deg); } }
+.gradient-border > * {
+  position: relative;
+  z-index: 1;
+  background: hsl(var(--card));
+  border-radius: inherit;
+  height: 100%;
+}
+@keyframes spin-border {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 
+/* ✨ CURSOR TRAIL */
 .cursor-trail {
   position: fixed; width: 5px; height: 5px; background: hsl(var(--primary));
   border-radius: 50%; pointer-events: none; z-index: 99998;
@@ -107,6 +140,7 @@
   100% { opacity: 0; transform: translate(-50%, -50%) scale(0.2) translateY(-8px); }
 }
 
+/* 🃏 TARJETAS HOLOGRÁFICAS */
 .holo-card {
   transform-style: preserve-3d; transform: perspective(1000px);
   background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
@@ -119,6 +153,7 @@
 }
 .holo-card:hover::before { opacity: 1; }
 
+/* 📏 SCROLLBAR + UTILS */
 html { scroll-behavior: smooth; }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: hsl(var(--bg)); }
@@ -128,6 +163,7 @@ html { scroll-behavior: smooth; }
 @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
 .animate-float { animation: float 6s ease-in-out infinite; }
 
+/* 🖥️ MEDIA QUERIES (Desktop vs Mobile) */
 @media (min-width: 769px) { body { cursor: none; } }
 @media (max-width: 768px) {
   .cursor-dot, .cursor-ring, .cursor-glow, .cursor-trail { display: none; }
