@@ -14,6 +14,9 @@
   --muted-fg: 215 10% 65%;
   --border: 215 20% 24%;
   --accent: 270 65% 55%;
+  /* ✅ Optimizado para contraste de borde en tema oscuro */
+  --border-start: 255 85% 70%;
+  --border-end: 280 75% 60%;
 }
 [data-theme="light"] {
   --bg: 210 20% 98%;
@@ -26,6 +29,9 @@
   --muted-fg: 215 16% 35%;
   --border: 214 20% 88%;
   --accent: 195 80% 45%;
+  /* ✅ Optimizado para contraste de borde en tema claro (más saturado/luminoso) */
+  --border-start: 215 90% 52%;
+  --border-end: 190 85% 45%;
 }
 [data-theme="cyber"] {
   --bg: 280 30% 6%;
@@ -38,6 +44,9 @@
   --muted-fg: 270 20% 70%;
   --border: 280 20% 22%;
   --accent: 175 90% 50%;
+  /* ✅ Ya funcionaba, se mantiene con alto contraste neón */
+  --border-start: 320 90% 65%;
+  --border-end: 170 85% 55%;
 }
 
 @layer base {
@@ -90,23 +99,23 @@
   filter: blur(60px); transition: background 0.3s;
 }
 
-/* 🌈 BORDE GRADIENTE PREMIUM (Flujo Continuo Geométricamente Perfecto) */
+/* 🌈 BORDE GRADIENTE PREMIUM (Flujo Continuo + Contraste Optimizado) */
 .gradient-border {
   position: relative;
   border-radius: 1rem;
-  padding: 2px; /* Grosor exacto del borde */
+  padding: 2px;
   background: linear-gradient(
     90deg,
-    hsl(var(--primary)) 0%,
-    hsl(var(--accent)) 50%,
-    hsl(var(--primary)) 100%
+    hsl(var(--border-start)) 0%,
+    hsl(var(--border-end)) 50%,
+    hsl(var(--border-start)) 100%
   );
   background-size: 300% 100%;
   animation: border-flow 5s linear infinite;
   isolation: isolate;
 }
 .gradient-border:hover {
-  animation-play-state: paused; /* Se detiene suavemente al pasar el cursor */
+  animation-play-state: paused;
 }
 .gradient-border > * {
   position: relative;
