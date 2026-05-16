@@ -37,6 +37,14 @@ export default function PerformanceContent() {
         <p className="text-[hsl(var(--muted-fg))] max-w-xl mx-auto mb-6">Auditamos tu rendimiento y te entregamos un plan de acción priorizado.</p>
         <Link href="/contacto"><button className="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold shadow-xl shadow-purple-500/20 group">Solicitar Test de Velocidad <ArrowRight className="inline ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" /></button></Link>
       </motion.div>
+            {/* 🔗 ENLAZADO INTERNO ESTRATÉGICO */}
+      <section className="max-w-4xl mx-auto pt-10 border-t border-[hsl(var(--border))]">
+        <h3 className="text-xl font-bold mb-4 text-[hsl(var(--fg))]">Recursos relacionados</h3>
+        <div className="grid md:grid-cols-2 gap-4">
+          <a href="/seo" className="link-underline text-[hsl(var(--primary))] hover:text-[hsl(var(--accent))] transition-colors">🔍 SEO y velocidad: cómo Google usa LCP para rankear</a>
+          <a href="/ux-ui" className="link-underline text-[hsl(var(--primary))] hover:text-[hsl(var(--accent))] transition-colors">🎨 UX/UI: convierte la velocidad en retención real</a>
+        </div>
+      </section>
     </div>
   )
 }
