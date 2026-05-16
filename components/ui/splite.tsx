@@ -16,24 +16,30 @@ const Spline = dynamic(() => import('@splinetool/react-spline'), {
   )
 })
 
-// ✅ URLs PÚBLICAS de Spline que permiten embed sin restricciones
+// ✅ URLs PÚBLICAS de Spline como fallback si la original da 403
 const PUBLIC_SCENES = [
-  "https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode", // Tu escena original
-  "https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode",  // Robot oficial (abierto)
-  "https://prod.spline.design/SPv3j1X2j9q2v5Q6/scene.splinecode"   // Escena demo (abierta)
+  "https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode",
+  "https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode",
+  "https://prod.spline.design/SPv3j1X2j9q2v5Q6/scene.splinecode"
 ]
 
-export function SplineScene({ className = '' }: { className?: string }) {
-  const [sceneUrl, setSceneUrl] = useState(PUBLIC_SCENES[0])
+interface SplineSceneProps {
+  scene?: string
+  className?: string
+}
+
+export function SplineScene({ scene, className = '' }: SplineSceneProps) {
+  const [sceneUrl, setSceneUrl] = useState(scene || PUBLIC_SCENES[0])
   const [error, setError] = useState(false)
 
-  // Fallback automático si la escena original da 403
+  // Fallback automático si la escena da 403
   useEffect(() => {
-    if (error) {
-      console.warn("⚠️ Escena original bloqueada. Cambiando a alternativa pública...")
-      setSceneUrl(PUBLIC_SCENES[1]) // Cambia a la escena alternativa
+    if (error && scene) {
+      console.warn("⚠️ Escena bloqueada. Usando alternativa pública...")
+      const fallback = PUBLIC_SCENES.find(url => url !== scene)
+      if (fallback) setSceneUrl(fallback)
     }
-  }, [error])
+  }, [error, scene])
 
   return (
     <div className={`relative w-full h-full overflow-hidden rounded-2xl ${className}`}>
