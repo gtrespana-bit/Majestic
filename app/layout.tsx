@@ -4,6 +4,7 @@ import "./globals.css"
 import { Providers } from "./providers"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
+import GlobalRobot from "@/components/GlobalRobot"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className={inter.className}>
         <Providers>
           <Navbar />
+          <GlobalRobot />
           {children}
           <Footer />
         </Providers>
