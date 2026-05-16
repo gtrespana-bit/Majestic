@@ -90,38 +90,31 @@
   filter: blur(60px); transition: background 0.3s;
 }
 
-/* 🌈 BORDE GRADIENTE PREMIUM (Continuo, uniforme, se pausa al hover) */
+/* 🌈 BORDE GRADIENTE PREMIUM (Flujo Lineal Continuo - Estándar de Industria) */
 .gradient-border {
   position: relative;
   border-radius: 1rem;
   padding: 1.5px;
-  overflow: hidden; /* Recorta perfectamente el pseudo-elemento */
   background: transparent;
-  isolation: isolate;
 }
 .gradient-border::before {
   content: "";
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: conic-gradient(
-    from 0deg,
+  inset: 0;
+  border-radius: inherit;
+  /* Flujo lineal diagonal: cero distorsión geométrica */
+  background: linear-gradient(
+    135deg,
     hsl(var(--primary)) 0%,
-    hsl(var(--accent)) 25%,
-    hsl(var(--primary)/0.5) 50%,
-    hsl(var(--accent)/0.8) 75%,
+    hsl(var(--accent)) 50%,
     hsl(var(--primary)) 100%
   );
-  transform-origin: center center;
-  animation: spin-border 6s linear infinite;
+  background-size: 200% 200%;
+  animation: gradient-flow 5s linear infinite;
   z-index: 0;
-  will-change: transform;
 }
 .gradient-border:hover::before {
-  animation-play-state: paused; /* Se detiene al pasar el cursor */
-  filter: brightness(1.15);
+  animation-play-state: paused; /* Se detiene suavemente al hover */
 }
 .gradient-border > * {
   position: relative;
@@ -129,11 +122,10 @@
   background: hsl(var(--card));
   border-radius: inherit;
   height: 100%;
-  width: 100%;
 }
-@keyframes spin-border {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+@keyframes gradient-flow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
 }
 
 /* ✨ CURSOR TRAIL */
