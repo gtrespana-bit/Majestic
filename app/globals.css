@@ -14,9 +14,6 @@
   --muted-fg: 215 10% 65%;
   --border: 215 20% 24%;
   --accent: 270 65% 55%;
-  /* ✅ Alto contraste visible: Cian brillante → Rosa/Magenta */
-  --border-start: 190 100% 60%;
-  --border-end: 310 90% 65%;
 }
 [data-theme="light"] {
   --bg: 210 20% 98%;
@@ -29,9 +26,6 @@
   --muted-fg: 215 16% 35%;
   --border: 214 20% 88%;
   --accent: 195 80% 45%;
-  /* ✅ Alto contraste visible: Azul profundo → Ámbar cálido */
-  --border-start: 225 95% 50%;
-  --border-end: 28 95% 55%;
 }
 [data-theme="cyber"] {
   --bg: 280 30% 6%;
@@ -44,9 +38,6 @@
   --muted-fg: 270 20% 70%;
   --border: 280 20% 22%;
   --accent: 175 90% 50%;
-  /* ✅ Neón de alto contraste: Rosa eléctrico → Cian brillante */
-  --border-start: 320 100% 70%;
-  --border-end: 175 100% 60%;
 }
 
 @layer base {
@@ -99,19 +90,19 @@
   filter: blur(60px); transition: background 0.3s;
 }
 
-/* 🌈 BORDE GRADIENTE PREMIUM (Flujo Continuo + Alto Contraste Visible) */
+/* 🌈 BORDE GRADIENTE PREMIUM (Flujo Lineal Continuo - Estable) */
 .gradient-border {
   position: relative;
   border-radius: 1rem;
-  padding: 2.5px;
+  padding: 2px;
   background: linear-gradient(
     90deg,
-    hsl(var(--border-start)) 0%,
-    hsl(var(--border-end)) 50%,
-    hsl(var(--border-start)) 100%
+    hsl(var(--primary)) 0%,
+    hsl(var(--accent)) 50%,
+    hsl(var(--primary)) 100%
   );
   background-size: 300% 100%;
-  animation: border-flow 4s linear infinite;
+  animation: border-flow 5s linear infinite;
   isolation: isolate;
 }
 .gradient-border:hover {
@@ -170,4 +161,38 @@ html { scroll-behavior: smooth; }
 @media (max-width: 768px) {
   .cursor-dot, .cursor-ring, .cursor-glow, .cursor-trail { display: none; }
   body { cursor: auto; }
+}
+
+/* 🎨 MICRO-INTERACCIONES PREMIUM */
+.hover-lift {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hover-lift:hover {
+  transform: translateY(-4px) scale(1.015);
+  box-shadow: 0 14px 28px -10px hsl(var(--primary)/0.28);
+}
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px hsl(var(--primary)/0.45);
+}
+.btn-press:active {
+  transform: scale(0.96);
+  transition: transform 0.12s ease;
+}
+.link-underline {
+  position: relative;
+  text-decoration: none;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: hsl(var(--primary));
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.link-underline:hover::after {
+  width: 100%;
 }
