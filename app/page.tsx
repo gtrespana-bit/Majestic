@@ -1,13 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import FloatingRobot from '@/components/FloatingRobot'
 import { motion } from 'framer-motion'
 import { SplineScene } from "@/components/ui/splite"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ChevronRight, Sparkles, ArrowUpRight, Globe, Zap, Rocket, Users, Star, Code2 } from 'lucide-react'
-import { PageHeader, MagneticButton, HoloCard, GradientBorder, ParallaxLayer } from '@/components/ui-premium'
+import { ChevronRight, Sparkles, ArrowUpRight, Globe, Zap, Rocket, Users, Star } from "lucide-react"
+import { MagneticButton, HoloCard, GradientBorder, ParallaxLayer } from '@/components/ui-premium'
 
 export default function HomePage() {
   const services = [
@@ -28,70 +27,70 @@ export default function HomePage() {
                 <Sparkles className="w-3.5 h-3.5 mr-2" /> Estudio de Diseño Digital
               </Badge>
             </motion.div>
+            
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight text-[hsl(var(--fg))]">
               Creamos <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400">Experiencias Web</span> que Inspiran
             </h1>
+            
             <motion.p initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:1.2 }} className="text-lg text-[hsl(var(--muted-fg))] max-w-xl mx-auto lg:mx-0 leading-relaxed">
               Fusionamos diseño elegante, tecnología 3D y estrategia digital para construir sitios web que convierten visitantes en clientes.
             </motion.p>
+            
             <motion.div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start" initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:1.4 }}>
               <MagneticButton><Link href="/contacto"><Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8 py-6 text-lg shadow-xl shadow-purple-500/25 group">Empezar Proyecto <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" /></Button></Link></MagneticButton>
               <MagneticButton><Link href="/portfolio"><Button size="lg" variant="outline" className="border-[hsl(var(--border))] hover:bg-[hsl(var(--card))] px-8 py-6 text-lg backdrop-blur-sm">Ver Portfolio</Button></Link></MagneticButton>
             </motion.div>
           </div>
-          <motion.div 
-  initial={{ opacity:0, scale:0.85, rotateX:12 }} 
-  animate={{ opacity:1, scale:1, rotateX:0 }} 
-  transition={{ duration:1.4, delay:0.5, ease:[0.22,1,0.36,1] }} 
-  className="relative h-[400px] lg:h-[600px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-purple-500/20"
->
-  <SplineScene className="w-full h-full" />
-  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-</motion.div>
+          
+          {/* ✅ ROBOT DEL HERO (RESTAURADO Y SIN FLOATINGROBOT) */}
+          <motion.div initial={{ opacity:0, scale:0.85, rotateX:12 }} animate={{ opacity:1, scale:1, rotateX:0 }} transition={{ duration:1.4, delay:0.5, ease:[0.22,1,0.36,1] }} className="relative h-[400px] lg:h-[600px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-purple-500/20">
+            <SplineScene className="w-full h-full" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+          </motion.div>
         </div>
       </section>
 
       {/* SERVICES PREVIEW */}
       <ParallaxLayer speed={0.15}>
-      <section className="py-24 relative z-10">
-        <div className="container mx-auto px-4 text-center mb-12">
-          <Badge className="mb-4 bg-[hsl(var(--primary))/0.2] text-[hsl(var(--primary))] border-[hsl(var(--primary))/0.3]">Servicios</Badge>
-          <h2 className="text-3xl md:text-5xl font-bold text-[hsl(var(--fg))]">Soluciones de <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">Alto Impacto</span></h2>
-        </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((s,i)=>(
-            <motion.div key={i} initial={{ opacity:0, y:40 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ delay:i*0.15 }}>
-              <GradientBorder className="h-full"><HoloCard className="h-full"><div className="bg-[hsl(var(--card))] rounded-xl p-6 h-full group">
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center text-purple-400 mb-4 group-hover:scale-110 transition-transform">{s.icon}</div>
-                <h3 className="text-lg font-bold text-[hsl(var(--fg))] mb-2">{s.title}</h3>
-                <p className="text-sm text-[hsl(var(--muted-fg))]">{s.description}</p>
-              </div></HoloCard></GradientBorder>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-      </ParallaxLayer>
-
-      {/* PORTFOLIO PREVIEW */}
-      <ParallaxLayer speed={0.1}>
-      <section className="py-24 relative z-10">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
-            <div><Badge className="mb-4 bg-pink-500/20 text-pink-400 border-pink-500/30">Portfolio</Badge><h2 className="text-3xl md:text-5xl font-bold text-[hsl(var(--fg))]">Proyectos que <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-orange-400">Hablan por Sí Mismos</span></h2></div>
-            <MagneticButton className="mt-4 md:mt-0"><Link href="/portfolio"><Button variant="ghost" className="text-[hsl(var(--muted-fg))] hover:text-[hsl(var(--fg))] group">Ver Todos <ArrowUpRight className="ml-2 w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" /></Button></Link></MagneticButton>
+        <section className="py-24 relative z-10">
+          <div className="container mx-auto px-4 text-center mb-12">
+            <Badge className="mb-4 bg-[hsl(var(--primary))/0.2] text-[hsl(var(--primary))] border-[hsl(var(--primary))/0.3]">Servicios</Badge>
+            <h2 className="text-3xl md:text-5xl font-bold text-[hsl(var(--fg))]">Soluciones de <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">Alto Impacto</span></h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            {[{t:"E-Commerce Luxury",c:"Tienda Online",i:"https://images.unsplash.com/photo-1523381294911-8d3cead13475?w=800"},{t:"App Financiera",c:"Fintech",i:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800"}].map((p,i)=>(
-              <motion.div key={i} initial={{ opacity:0, scale:0.95 }} whileInView={{ opacity:1, scale:1 }} viewport={{ once:true }} transition={{ delay:i*0.1 }}>
-                <GradientBorder className="rounded-2xl overflow-hidden group"><HoloCard className="rounded-2xl overflow-hidden"><div className="bg-[hsl(var(--card))] h-full">
-                  <div className="relative aspect-video overflow-hidden"><img src={p.i} alt={p.t} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" /><div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6"><Button size="sm" className="bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20">Ver Proyecto</Button></div></div>
-                  <div className="p-6"><Badge variant="secondary" className="mb-2 text-xs">{p.c}</Badge><h3 className="text-xl font-semibold text-[hsl(var(--fg))] group-hover:text-purple-400 transition-colors">{p.t}</h3></div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {services.map((s,i)=>(
+              <motion.div key={i} initial={{ opacity:0, y:40 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ delay:i*0.15 }}>
+                <GradientBorder className="h-full"><HoloCard className="h-full"><div className="bg-[hsl(var(--card))] rounded-xl p-6 h-full group">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center text-purple-400 mb-4 group-hover:scale-110 transition-transform">{s.icon}</div>
+                  <h3 className="text-lg font-bold text-[hsl(var(--fg))] mb-2">{s.title}</h3>
+                  <p className="text-sm text-[hsl(var(--muted-fg))]">{s.description}</p>
                 </div></HoloCard></GradientBorder>
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
+      </ParallaxLayer>
+
+      {/* PORTFOLIO PREVIEW */}
+      <ParallaxLayer speed={0.1}>
+        <section className="py-24 relative z-10">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+              <div><Badge className="mb-4 bg-pink-500/20 text-pink-400 border-pink-500/30">Portfolio</Badge><h2 className="text-3xl md:text-5xl font-bold text-[hsl(var(--fg))]">Proyectos que <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-orange-400">Hablan por Sí Mismos</span></h2></div>
+              <MagneticButton className="mt-4 md:mt-0"><Link href="/portfolio"><Button variant="ghost" className="text-[hsl(var(--muted-fg))] hover:text-[hsl(var(--fg))] group">Ver Todos <ArrowUpRight className="ml-2 w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" /></Button></Link></MagneticButton>
+            </div>
+            <div className="grid md:grid-cols-2 gap-6">
+              {[{t:"E-Commerce Luxury",c:"Tienda Online",i:"https://images.unsplash.com/photo-1523381294911-8d3cead13475?w=800"},{t:"App Financiera",c:"Fintech",i:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800"}].map((p,i)=>(
+                <motion.div key={i} initial={{ opacity:0, scale:0.95 }} whileInView={{ opacity:1, scale:1 }} viewport={{ once:true }} transition={{ delay:i*0.1 }}>
+                  <GradientBorder className="rounded-2xl overflow-hidden group"><HoloCard className="rounded-2xl overflow-hidden"><div className="bg-[hsl(var(--card))] h-full">
+                    <div className="relative aspect-video overflow-hidden"><img src={p.i} alt={p.t} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" /><div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6"><Button size="sm" className="bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20">Ver Proyecto</Button></div></div>
+                    <div className="p-6"><Badge variant="secondary" className="mb-2 text-xs">{p.c}</Badge><h3 className="text-xl font-semibold text-[hsl(var(--fg))] group-hover:text-purple-400 transition-colors">{p.t}</h3></div>
+                  </div></HoloCard></GradientBorder>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
       </ParallaxLayer>
 
       {/* TESTIMONIALS PREVIEW */}
@@ -113,32 +112,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA FINAL */}
       <ParallaxLayer speed={0.05}>
-      <section className="py-24 relative z-10">
-        <div className="container mx-auto px-4 text-center">
-          <motion.div initial={{ opacity:0, y:30 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }}>
-            <GradientBorder className="rounded-3xl max-w-4xl mx-auto"><HoloCard className="rounded-3xl"><div className="bg-[hsl(var(--card))] rounded-3xl p-8 md:p-12">
-              <Sparkles className="w-12 h-12 mx-auto text-purple-400 animate-float mb-4" />
-              <h2 className="text-3xl md:text-4xl font-bold text-[hsl(var(--fg))] mb-4">¿Listo para Transformar tu Presencia Digital?</h2>
-              <p className="text-[hsl(var(--muted-fg))] text-lg max-w-xl mx-auto mb-8">Agenda una consulta gratuita y descubre cómo podemos llevar tu proyecto al siguiente nivel.</p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <MagneticButton><Link href="/contacto"><Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8 py-6 text-lg shadow-xl shadow-purple-500/20">Agendar Consulta Gratis <ChevronRight className="ml-2 w-5 h-5" /></Button></Link></MagneticButton>
-                <MagneticButton><Link href="/sobre-nosotros"><Button size="lg" variant="outline" className="border-[hsl(var(--border))] hover:bg-[hsl(var(--card))] px-8 py-6 text-lg backdrop-blur-sm">Conocer el Equipo</Button></Link></MagneticButton>
-              </div>
-            </div></HoloCard></GradientBorder>
-          </motion.div>
-        </div>
-      </section>
+        <section className="py-24 relative z-10">
+          <div className="container mx-auto px-4 text-center">
+            <motion.div initial={{ opacity:0, y:30 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }}>
+              <GradientBorder className="rounded-3xl max-w-4xl mx-auto"><HoloCard className="rounded-3xl"><div className="bg-[hsl(var(--card))] rounded-3xl p-8 md:p-12">
+                <Sparkles className="w-12 h-12 mx-auto text-purple-400 animate-float mb-4" />
+                <h2 className="text-3xl md:text-4xl font-bold text-[hsl(var(--fg))] mb-4">¿Listo para Transformar tu Presencia Digital?</h2>
+                <p className="text-[hsl(var(--muted-fg))] text-lg max-w-xl mx-auto mb-8">Agenda una consulta gratuita y descubre cómo podemos llevar tu proyecto al siguiente nivel.</p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <MagneticButton><Link href="/contacto"><Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8 py-6 text-lg shadow-xl shadow-purple-500/20">Agendar Consulta Gratis <ChevronRight className="ml-2 w-5 h-5" /></Button></Link></MagneticButton>
+                  <MagneticButton><Link href="/sobre-nosotros"><Button size="lg" variant="outline" className="border-[hsl(var(--border))] hover:bg-[hsl(var(--card))] px-8 py-6 text-lg backdrop-blur-sm">Conocer el Equipo</Button></Link></MagneticButton>
+                </div>
+              </div></HoloCard></GradientBorder>
+            </motion.div>
+          </div>
+        </section>
       </ParallaxLayer>
-
-      {/* FOOTER MINIMAL (El global ya lo tiene, esto es solo cierre visual) */}
-      <footer className="py-10 border-t border-[hsl(var(--border))] bg-[hsl(var(--bg))/0.6] backdrop-blur-md">
-        <div className="container mx-auto px-4 text-center text-sm text-[hsl(var(--muted-fg))]">
-          <div className="flex items-center justify-center gap-2 mb-3"><Code2 className="w-4 h-4 text-purple-400" /><span className="font-bold text-[hsl(var(--fg))]">MajesticWeb</span></div>
-          © {new Date().getFullYear()} Estudio de Diseño Digital Premium.
-        </div>
-      </footer>
     </>
   )
 }
