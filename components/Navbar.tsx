@@ -10,12 +10,14 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   
   const links = [
-    { href: '/', label: 'Inicio' },
-    { href: '/servicios', label: 'Servicios' },
-    { href: '/portfolio', label: 'Portfolio' },
-    { href: '/sobre-nosotros', label: 'Nosotros' },
-    { href: '/contacto', label: 'Contacto' }
-  ]
+  { href: '/', label: 'Inicio' },
+  { href: '/servicios', label: 'Servicios' },
+  { href: '/seo', label: 'SEO' },
+  { href: '/ux-ui', label: 'UX/UI' },
+  { href: '/rendimiento-web', label: 'Velocidad' },
+  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/contacto', label: 'Contacto' }
+]
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-[60] px-4 py-4 backdrop-blur-md bg-[hsl(var(--bg))/0.6] border-b border-[hsl(var(--border))/0.3]">
