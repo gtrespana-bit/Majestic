@@ -1,10 +1,8 @@
 'use client'
+
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { PageHeader, MagneticButton, HoloCard, GradientBorder } from '@/components/ui-premium'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { PageHeader, GradientBorder } from '@/components/ui-premium'
 import { CheckCircle2, ArrowRight, Globe, Zap, Rocket, Code2 } from 'lucide-react'
 
 const services = [
@@ -30,20 +28,14 @@ export default function ServicesPage() {
         <div className="grid md:grid-cols-2 gap-6">
           {services.map((s, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
-              <GradientBorder className="h-full"><HoloCard className="h-full">
-                <Card className="bg-[hsl(var(--card))/0.2] border-none h-full group">
-                  <CardHeader>
-                    <div className="w-12 h-12 rounded-lg bg-[hsl(var(--primary))/0.15] flex items-center justify-center text-[hsl(var(--primary))] mb-3 group-hover:scale-110 transition-transform">{s.icon}</div>
-                    <CardTitle className="text-xl text-[hsl(var(--fg))]">{s.title}</CardTitle>
-                    <CardDescription className="text-[hsl(var(--muted-fg))] mt-2">{s.desc}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2">
-                      {s.features.map((f, j) => (<li key={j} className="flex items-center gap-2 text-sm text-[hsl(var(--fg))]"><CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" /> {f}</li>))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </HoloCard></GradientBorder>
+              <GradientBorder className="h-full">
+                <div className="bg-[hsl(var(--card))] rounded-xl p-6 h-full flex flex-col">
+                  <div className="w-12 h-12 rounded-lg bg-[hsl(var(--primary))/0.15] flex items-center justify-center text-[hsl(var(--primary))] mb-3">{s.icon}</div>
+                  <h3 className="text-xl font-bold text-[hsl(var(--fg))] mb-2">{s.title}</h3>
+                  <p className="text-[hsl(var(--muted-fg))] mb-4 text-sm">{s.desc}</p>
+                  <ul className="space-y-2 mt-auto">{s.features.map((f, j) => (<li key={j} className="flex items-center gap-2 text-sm text-[hsl(var(--fg))]"><CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" /> {f}</li>))}</ul>
+                </div>
+              </GradientBorder>
             </motion.div>
           ))}
         </div>
@@ -51,22 +43,19 @@ export default function ServicesPage() {
 
       <section className="bg-[hsl(var(--card))/0.2] border border-[hsl(var(--border))] rounded-2xl p-6 md:p-10">
         <div className="text-center mb-10">
-          <Badge className="mb-3 bg-[hsl(var(--accent))/0.2] text-[hsl(var(--accent))] border-[hsl(var(--accent))/0.3]">Planes transparentes</Badge>
           <h2 className="text-2xl md:text-3xl font-bold text-[hsl(var(--fg))]">Inversión adaptada a tus objetivos</h2>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           {plans.map((p, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }} className={p.popular ? "relative" : ""}>
               {p.popular && <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[hsl(var(--primary))] text-[hsl(var(--primary-fg))] text-xs font-bold px-3 py-1 rounded-full shadow-lg">Más elegido</div>}
-              <GradientBorder className="h-full"><HoloCard className="h-full">
-                <Card className={`h-full flex flex-col border-none bg-[hsl(var(--card))/0.2] ${p.popular ? 'ring-2 ring-[hsl(var(--primary))]' : ''}`}>
-                  <CardHeader className="text-center pb-4"><CardTitle className="text-lg text-[hsl(var(--fg))]">{p.name}</CardTitle><div className="text-3xl font-bold text-[hsl(var(--fg))] mt-2">{p.price}</div><CardDescription className="text-[hsl(var(--muted-fg))]">{p.desc}</CardDescription></CardHeader>
-                  <CardContent className="flex-1">
-                    <ul className="space-y-3 mb-6">{p.features.map((f, j) => (<li key={j} className="flex items-start gap-2 text-sm text-[hsl(var(--fg))]"><CheckCircle2 className="w-4 h-4 text-[hsl(var(--primary))] mt-0.5 flex-shrink-0" /> {f}</li>))}</ul>
-                    <MagneticButton><Link href="/contacto" className="block"><Button className={`w-full ${p.popular ? 'bg-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))/0.9] text-[hsl(var(--primary-fg))]' : 'bg-[hsl(var(--bg))] border border-[hsl(var(--border))] hover:bg-[hsl(var(--muted))] text-[hsl(var(--fg))]'}`}>Solicitar presupuesto</Button></Link></MagneticButton>
-                  </CardContent>
-                </Card>
-              </HoloCard></GradientBorder>
+              <GradientBorder className="h-full">
+                <div className={`bg-[hsl(var(--card))] rounded-xl p-6 h-full flex flex-col ${p.popular ? 'ring-2 ring-[hsl(var(--primary))]' : ''}`}>
+                  <div className="text-center pb-4"><h3 className="text-lg font-bold text-[hsl(var(--fg))]">{p.name}</h3><div className="text-3xl font-bold text-[hsl(var(--fg))] mt-2">{p.price}</div><p className="text-sm text-[hsl(var(--muted-fg))] mt-1">{p.desc}</p></div>
+                  <ul className="space-y-3 mb-6 flex-1">{p.features.map((f, j) => (<li key={j} className="flex items-start gap-2 text-sm text-[hsl(var(--fg))]"><CheckCircle2 className="w-4 h-4 text-[hsl(var(--primary))] mt-0.5 flex-shrink-0" /> {f}</li>))}</ul>
+                  <Link href="/contacto" className="block"><button className={`w-full px-4 py-3 rounded-lg text-sm font-semibold transition-all ${p.popular ? 'bg-[hsl(var(--primary))] text-[hsl(var(--primary-fg))] hover:bg-[hsl(var(--primary))/0.9]' : 'bg-[hsl(var(--bg))] border border-[hsl(var(--border))] hover:bg-[hsl(var(--muted))] text-[hsl(var(--fg))]'}`}>Solicitar presupuesto</button></Link>
+                </div>
+              </GradientBorder>
             </motion.div>
           ))}
         </div>
@@ -75,7 +64,7 @@ export default function ServicesPage() {
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center py-10">
         <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[hsl(var(--fg))]">¿No sabes qué servicio necesitas?</h2>
         <p className="text-[hsl(var(--muted-fg))] max-w-xl mx-auto mb-6">Agenda una llamada estratégica gratuita.</p>
-        <MagneticButton><Link href="/contacto"><Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8 py-6 text-lg group">Agendar consulta gratuita <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" /></Button></Link></MagneticButton>
+        <Link href="/contacto"><button className="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold shadow-xl shadow-purple-500/20 group">Agendar consulta gratuita <ArrowRight className="inline ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" /></button></Link>
       </motion.div>
     </div>
   )

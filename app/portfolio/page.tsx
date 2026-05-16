@@ -2,10 +2,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import { PageHeader, MagneticButton, HoloCard, GradientBorder } from '@/components/ui-premium'
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { PageHeader, GradientBorder } from '@/components/ui-premium'
 import { ArrowUpRight } from 'lucide-react'
 
 const projects = [
@@ -32,25 +29,29 @@ export default function PortfolioPage() {
         <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((p, i) => (
             <motion.div key={p.id} layout initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ duration: 0.3, delay: i * 0.05 }}>
-              <GradientBorder className="rounded-2xl overflow-hidden"><HoloCard className="rounded-2xl overflow-hidden h-full">
-                <Card className="border-none bg-[hsl(var(--card))/0.2] h-full flex flex-col group">
+              <GradientBorder className="rounded-xl overflow-hidden">
+                <div className="bg-[hsl(var(--card))] h-full flex flex-col">
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <img src={p.img} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <Button size="sm" className="bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20">Ver Proyecto <ArrowUpRight className="ml-2 w-4 h-4" /></Button>
-                    </div>
                   </div>
-                  <CardHeader className="pb-2"><div className="flex justify-between items-start mb-2"><Badge variant="secondary" className="text-xs">{p.cat}</Badge><span className="text-xs text-[hsl(var(--muted-fg))]">{p.year}</span></div><h3 className="text-xl font-semibold text-[hsl(var(--fg))]">{p.title}</h3></CardHeader>
-                  <CardContent className="pt-0 mt-auto"><p className="text-sm text-[hsl(var(--muted-fg))] flex items-center gap-1">📈 {p.metrics}</p></CardContent>
-                </Card>
-              </HoloCard></GradientBorder>
+                  <div className="p-5 flex flex-col flex-1">
+                    <div className="flex justify-between items-start mb-2">
+                      <span className="px-2 py-1 rounded-md bg-[hsl(var(--muted))] text-[hsl(var(--muted-fg))] text-xs">{p.cat}</span>
+                      <span className="text-xs text-[hsl(var(--muted-fg))]">{p.year}</span>
+                    </div>
+                    <h3 className="text-xl font-semibold text-[hsl(var(--fg))] mb-2">{p.title}</h3>
+                    <p className="text-sm text-[hsl(var(--muted-fg))] mt-auto flex items-center gap-1">📈 {p.metrics}</p>
+                    <Link href="/contacto" className="mt-4 block w-full"><button className="w-full px-4 py-2 rounded-lg bg-[hsl(var(--bg))] border border-[hsl(var(--border))] text-[hsl(var(--fg))] hover:bg-[hsl(var(--muted))] transition-all text-sm">Ver Proyecto <ArrowUpRight className="inline ml-1 w-3.5 h-3.5" /></button></Link>
+                  </div>
+                </div>
+              </GradientBorder>
             </motion.div>
           ))}
         </motion.div>
       </AnimatePresence>
       <div className="mt-16 text-center">
         <h3 className="text-2xl font-bold mb-4 text-[hsl(var(--fg))]">¿Listo para tu caso de éxito?</h3>
-        <MagneticButton><Link href="/contacto"><Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8 py-6">Iniciar tu proyecto</Button></Link></MagneticButton>
+        <Link href="/contacto"><button className="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold shadow-xl shadow-purple-500/20">Iniciar tu proyecto</button></Link>
       </div>
     </div>
   )
