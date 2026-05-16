@@ -73,7 +73,7 @@ export const CursorTrail = ({ mobile }: { mobile: boolean }) => {
   return null
 }
 
-/* 🌌 CANVAS DE FONDO */
+/* 🌌 CANVAS DE FONDO (Estrellas / Figuras Reactivas) */
 export const DynamicBackground = ({ theme, mobile }: { theme: string; mobile: boolean }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const mouse = useRef({ x: -1000, y: -1000 })
@@ -168,10 +168,11 @@ export const LiquidEffect = () => {
   return <>{r.map(i => (<div key={i.id} className="liquid-ripple" style={{ left: i.x, top: i.y, width: 120, height: 120 }} />))}</>
 }
 
-/* 🎨 SWITCHER (Movido a bottom-left) */
+/* 🎨 SWITCHER (Corregido para TypeScript estricto) */
 export const ThemeSwitcher = () => {
   const { theme, setTheme } = useContext(ThemeContext)
-  const themes = [
+  type ThemeId = 'dark' | 'light' | 'cyber'
+  const themes: { id: ThemeId; icon: React.ReactNode }[] = [
     { id: 'dark', icon: <Moon className="w-4 h-4" /> },
     { id: 'light', icon: <Sun className="w-4 h-4" /> },
     { id: 'cyber', icon: <ZapIcon className="w-4 h-4" /> }
@@ -187,7 +188,7 @@ export const ThemeSwitcher = () => {
   )
 }
 
-/* 🎵 AUDIO REACTIVO (Formateado correctamente) */
+/* 🎵 AUDIO REACTIVO */
 export const ReactiveAudio = () => {
   const [a, s] = useState(false)
   const [m, sm] = useState(false)
