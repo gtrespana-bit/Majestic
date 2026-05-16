@@ -39,7 +39,7 @@ export default function HomePage() {
             </motion.div>
           </div>
           <motion.div initial={{ opacity:0, scale:0.85, rotateX:12 }} animate={{ opacity:1, scale:1, rotateX:0 }} transition={{ duration:1.4, delay:0.5, ease:[0.22,1,0.36,1] }} className="relative h-[400px] lg:h-[600px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-purple-500/20">
-            <SplineScene scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" className="w-full h-full" />
+            <SplineScene className="w-full h-full" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
           </motion.div>
         </div>

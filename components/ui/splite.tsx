@@ -2,22 +2,18 @@
 
 import React, { useState, useEffect } from 'react'
 
-// ✅ TU ESCENA DE SPLINE
-const SPLINE_EMBED_URL = "https://my.spline.design/nexbotrobotcharacterconcept-vpDGeeHrll7A8gjDFeSDRA3n/"
+const DEFAULT_SPLINE_URL = "https://my.spline.design/nexbotrobotcharacterconcept-vpDGeeHrll7A8gjDFeSDRA3n/"
 
 interface SplineSceneProps {
-  className?: string
+  className?: string  // ✅ Sin prop 'scene'
 }
 
 export function SplineScene({ className = '' }: SplineSceneProps) {
   const [loaded, setLoaded] = useState(false)
   const [showFallback, setShowFallback] = useState(false)
 
-  // Timeout: si tarda >4s, muestra fallback
   useEffect(() => {
-    const timer = setTimeout(() => { 
-      if (!loaded) setShowFallback(true) 
-    }, 4000)
+    const timer = setTimeout(() => { if (!loaded) setShowFallback(true) }, 4000)
     return () => clearTimeout(timer)
   }, [loaded])
 
@@ -42,7 +38,7 @@ export function SplineScene({ className = '' }: SplineSceneProps) {
         </div>
       )}
       <iframe
-        src={SPLINE_EMBED_URL}
+        src={DEFAULT_SPLINE_URL}
         className="w-full h-full border-0"
         title="NexBot 3D Robot"
         loading="lazy"
