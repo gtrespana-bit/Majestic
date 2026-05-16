@@ -90,31 +90,23 @@
   filter: blur(60px); transition: background 0.3s;
 }
 
-/* 🌈 BORDE GRADIENTE PREMIUM (Flujo Lineal Continuo - Estándar de Industria) */
+/* 🌈 BORDE GRADIENTE PREMIUM (Flujo Continuo Geométricamente Perfecto) */
 .gradient-border {
   position: relative;
   border-radius: 1rem;
-  padding: 1.5px;
-  background: transparent;
-}
-.gradient-border::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  /* Flujo lineal diagonal: cero distorsión geométrica */
+  padding: 2px; /* Grosor exacto del borde */
   background: linear-gradient(
-    135deg,
+    90deg,
     hsl(var(--primary)) 0%,
     hsl(var(--accent)) 50%,
     hsl(var(--primary)) 100%
   );
-  background-size: 200% 200%;
-  animation: gradient-flow 5s linear infinite;
-  z-index: 0;
+  background-size: 300% 100%;
+  animation: border-flow 5s linear infinite;
+  isolation: isolate;
 }
-.gradient-border:hover::before {
-  animation-play-state: paused; /* Se detiene suavemente al hover */
+.gradient-border:hover {
+  animation-play-state: paused; /* Se detiene suavemente al pasar el cursor */
 }
 .gradient-border > * {
   position: relative;
@@ -122,10 +114,11 @@
   background: hsl(var(--card));
   border-radius: inherit;
   height: 100%;
+  width: 100%;
 }
-@keyframes gradient-flow {
+@keyframes border-flow {
   0% { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
+  100% { background-position: 300% 50%; }
 }
 
 /* ✨ CURSOR TRAIL */
