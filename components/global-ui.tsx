@@ -168,7 +168,7 @@ export const LiquidEffect = () => {
   return <>{r.map(i => (<div key={i.id} className="liquid-ripple" style={{ left: i.x, top: i.y, width: 120, height: 120 }} />))}</>
 }
 
-/* 🎨 SWITCHER (Corregido para TypeScript estricto) */
+/* 🎨 SWITCHER */
 export const ThemeSwitcher = () => {
   const { theme, setTheme } = useContext(ThemeContext)
   type ThemeId = 'dark' | 'light' | 'cyber'
@@ -188,7 +188,7 @@ export const ThemeSwitcher = () => {
   )
 }
 
-/* 🎵 AUDIO REACTIVO */
+/* 🎵 AUDIO REACTIVO (Fix TS: o.current null check en setTimeout) */
 export const ReactiveAudio = () => {
   const [a, s] = useState(false)
   const [m, sm] = useState(false)
@@ -233,7 +233,7 @@ export const ReactiveAudio = () => {
       g.current.gain.setTargetAtTime(Math.min(0.09, sp * 0.0008) + 0.02, c.current.currentTime, 0.05)
       o.current.frequency.setTargetAtTime(85 + Math.min(70, sp * 0.9), c.current.currentTime, 0.1)
       t.current = setTimeout(() => {
-        if (!g.current || !c.current) return
+        if (!g.current || !c.current || !o.current) return
         g.current.gain.setTargetAtTime(0.02, c.current.currentTime, 0.2)
         o.current.frequency.setTargetAtTime(85, c.current.currentTime, 0.3)
       }, 250)
