@@ -1,58 +1,51 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+
+// ⚠️ REEMPLAZA ESTA URL con la URL PÚBLICA de tu escena en Spline
+// La obtienes en: Spline Dashboard → Tu Escena → Share → Embed → Copy URL
+const SPLINE_EMBED_URL = "https://my.spline.design/tu-escena-publica-aqui/"
 
 interface SplineSceneProps {
-  scene: string
   className?: string
 }
 
-export function SplineScene({ scene, className = '' }: SplineSceneProps) {
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [hasError, setHasError] = useState(false)
-  
-  // Extraer el ID de la escena de la URL de Spline
-  const getSceneId = (url: string) => {
-    const match = url.match(/\/scene\.splinecode\?scene=([^&]+)/)
-    return match ? match[1] : url.split('/').pop()?.replace('.splinecode', '')
-  }
-
-  useEffect(() => {
-    // Pequeño delay para asegurar hidratación completa
-    const timer = setTimeout(() => setIsLoaded(true), 100)
-    return () => clearTimeout(timer)
-  }, [])
-
-  if (!isLoaded || hasError) {
-    return (
-      <div className={`w-full h-full flex items-center justify-center bg-neutral-900/30 rounded-2xl ${className}`}>
-        <div className="text-center text-neutral-400">
-          {!hasError ? (
-            <>
-              <div className="w-8 h-8 border-2 border-purple-500/50 border-t-purple-500 rounded-full animate-spin mx-auto mb-3" />
-              <p className="text-sm">Cargando 3D...</p>
-            </>
-          ) : (
-            <p className="text-sm">Experiencia 3D no disponible</p>
-          )}
-        </div>
-      </div>
-    )
-  }
-
-  // Usar iframe embed de Spline (100% compatible con producción)
-  const sceneId = getSceneId(scene)
-  const embedUrl = `https://my.spline.design/embed/${sceneId}?embed=true&background=transparent`
+export function SplineScene({ className = '' }: SplineSceneProps) {
+  const [loaded, setLoaded] = useState(false)
+  const [error, setError] = useState(false)
 
   return (
-    <iframe
-      src={embedUrl}
-      className={`w-full h-full border-0 rounded-2xl ${className}`}
-      title="3D Experience"
-      loading="lazy"
-      onError={() => setHasError(true)}
-      sandbox="allow-scripts allow-same-origin allow-pointer-lock"
-    />
+    <div className={`relative w-full h-full overflow-hidden rounded-2xl bg-neutral-900/20 ${className}`}>
+      {/* Fallback de carga */}
+      {!loaded && !error && (
+        <div className="absolute inset-0 flex items-center justify-center bg-neutral-900/30">
+          <div className="text-center text-neutral-400">
+            <div className="w-8 h-8 border-2 border-purple-500/50 border-t-purple-500 rounded-full animate-spin mx-auto mb-3" />
+            <p className="text-sm">Cargando experiencia 3D...</p>
+          </div>
+        </div>
+      )}
+      
+      {/* Fallback de error */}
+      {error && (
+        <div className="absolute inset-0 flex items-center justify-center bg-neutral-900/30">
+          <p className="text-neutral-400 text-sm">3D no disponible</p>
+        </div>
+      )}
+
+      {/* Iframe oficial de Spline */}
+      <iframe
+        src={SPLINE_EMBED_URL}
+        className="w-full h-full border-0"
+        title="3D Interactive Scene"
+        loading="lazy"
+        allow="autoplay; fullscreen; pointer-lock; xr-spatial-tracking"
+        sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms"
+        onLoad={() => setLoaded(true)}
+        onError={() => setError(true)}
+        style={{ opacity: loaded ? 1 : 0, transition: 'opacity 0.4s ease-in' }}
+      />
+    </div>
   )
 }
 
