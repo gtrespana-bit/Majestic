@@ -90,7 +90,7 @@
   filter: blur(60px); transition: background 0.3s;
 }
 
-/* 🌈 BORDE GRADIENTE ANIMADO (OPTIMIZADO) */
+/* 🌈 BORDE GRADIENTE ANIMADO (CONTINUO Y SIN SALTOS) */
 .gradient-border {
   position: relative;
   border-radius: 1rem;
@@ -102,17 +102,19 @@
 .gradient-border::before {
   content: "";
   position: absolute;
-  inset: -60%;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
   background: conic-gradient(
-    from 0deg at 50% 50%,
-    hsl(var(--primary)),
-    hsl(var(--accent)),
-    hsl(var(--primary)/0.7),
-    hsl(var(--accent)/0.9),
-    hsl(var(--primary))
+    from 0deg,
+    hsl(var(--primary)) 0%,
+    hsl(var(--accent)) 33.33%,
+    hsl(var(--accent)) 66.66%,
+    hsl(var(--primary)) 100%
   );
-  transform-origin: center;
-  animation: spin-border 10s linear infinite;
+  transform-origin: center center;
+  animation: spin-border 4s linear infinite;
   z-index: 0;
   will-change: transform;
 }
