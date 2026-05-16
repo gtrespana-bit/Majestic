@@ -1,57 +1,59 @@
 'use client'
 
-import { useEffect, useState, type ComponentProps } from 'react'
+import { useEffect, useState } from 'react'
 
-// Componente wrapper que carga Spline solo después del mount
-export function SplineScene({ scene, className, ...props }: { scene: string; className?: string } & Record<string, any>) {
-  const [isMounted, setIsMounted] = useState(false)
-  const [SplineComp, setSplineComp] = useState<any>(null)
-  const [error, setError] = useState<string | null>(null)
+interface SplineSceneProps {
+  scene: string
+  className?: string
+}
 
-  // 1. Marcar como montado (solo en cliente)
+export function SplineScene({ scene, className = '' }: SplineSceneProps) {
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [hasError, setHasError] = useState(false)
+  
+  // Extraer el ID de la escena de la URL de Spline
+  const getSceneId = (url: string) => {
+    const match = url.match(/\/scene\.splinecode\?scene=([^&]+)/)
+    return match ? match[1] : url.split('/').pop()?.replace('.splinecode', '')
+  }
+
   useEffect(() => {
-    setIsMounted(true)
+    // Pequeño delay para asegurar hidratación completa
+    const timer = setTimeout(() => setIsLoaded(true), 100)
+    return () => clearTimeout(timer)
   }, [])
 
-  // 2. Cargar Spline dinámicamente solo después del mount
-  useEffect(() => {
-    if (!isMounted) return
-    
-    let cancelled = false
-    import('@splinetool/react-spline')
-      .then(mod => {
-        if (!cancelled) setSplineComp(() => mod.default)
-      })
-      .catch(err => {
-        console.error('❌ Error cargando Spline:', err)
-        if (!cancelled) setError('3D no disponible')
-      })
-    
-    return () => { cancelled = true }
-  }, [isMounted])
-
-  // Fallback mientras carga o si hay error
-  if (!isMounted || !SplineComp) {
+  if (!isLoaded || hasError) {
     return (
-      <div className={`w-full h-full flex items-center justify-center bg-neutral-900/30 rounded-2xl ${className || ''}`}>
+      <div className={`w-full h-full flex items-center justify-center bg-neutral-900/30 rounded-2xl ${className}`}>
         <div className="text-center text-neutral-400">
-          <div className="w-8 h-8 border-2 border-purple-500/50 border-t-purple-500 rounded-full animate-spin mx-auto mb-3" />
-          <p className="text-sm">Cargando 3D...</p>
+          {!hasError ? (
+            <>
+              <div className="w-8 h-8 border-2 border-purple-500/50 border-t-purple-500 rounded-full animate-spin mx-auto mb-3" />
+              <p className="text-sm">Cargando 3D...</p>
+            </>
+          ) : (
+            <p className="text-sm">Experiencia 3D no disponible</p>
+          )}
         </div>
       </div>
     )
   }
 
-  if (error) {
-    return (
-      <div className={`w-full h-full flex items-center justify-center bg-neutral-900/30 rounded-2xl ${className || ''}`}>
-        <p className="text-neutral-400 text-sm">{error}</p>
-      </div>
-    )
-  }
+  // Usar iframe embed de Spline (100% compatible con producción)
+  const sceneId = getSceneId(scene)
+  const embedUrl = `https://my.spline.design/embed/${sceneId}?embed=true&background=transparent`
 
-  // Renderizar Spline con los props originales
-  return <SplineComp scene={scene} className={className} {...props} />
+  return (
+    <iframe
+      src={embedUrl}
+      className={`w-full h-full border-0 rounded-2xl ${className}`}
+      title="3D Experience"
+      loading="lazy"
+      onError={() => setHasError(true)}
+      sandbox="allow-scripts allow-same-origin allow-pointer-lock"
+    />
+  )
 }
 
 export default SplineScene
