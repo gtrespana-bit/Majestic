@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import FloatingRobot from '@/components/FloatingRobot'
 import { motion } from 'framer-motion'
 import { SplineScene } from "@/components/ui/splite"
 import { Button } from "@/components/ui/button"
