@@ -5,7 +5,13 @@ import { Providers } from "./providers"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({
+  subsets: ["latin"],
+  display: 'swap',
+  variable: '--font-inter',
+  preload: true,
+  fallback: ['system-ui', 'arial'],
+})
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -20,8 +26,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" className="scroll-smooth">
-      <body className={inter.className}>
+    <html lang="es" className={`${inter.variable} scroll-smooth`} suppressHydrationWarning>
+      <body className="font-[var(--font-inter)]">
         <Providers>
           <Navbar />
           {children}

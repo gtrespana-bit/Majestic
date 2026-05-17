@@ -43,7 +43,7 @@
 @layer base {
   * { border-color: hsl(var(--border)); }
   body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
     background-color: hsl(var(--bg));
     color: hsl(var(--fg));
     transition: background-color 0.5s ease, color 0.5s ease;

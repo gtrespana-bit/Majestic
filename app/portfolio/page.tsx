@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { PageHeader, GradientBorder } from '@/components/ui-premium'
 import { ArrowUpRight } from 'lucide-react'
 
@@ -32,7 +33,16 @@ export default function PortfolioPage() {
               <GradientBorder className="rounded-xl overflow-hidden">
                 <div className="bg-[hsl(var(--card))] h-full flex flex-col">
                   <div className="relative aspect-[4/3] overflow-hidden">
-                    <img src={p.img} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <Image
+                      src={p.img}
+                      alt={p.title}
+                      fill
+                      priority={i === 0}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      loading={i === 0 ? 'eager' : 'lazy'}
+                      quality={85}
+                    />
                   </div>
                   <div className="p-5 flex flex-col flex-1">
                     <div className="flex justify-between items-start mb-2">
