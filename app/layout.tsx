@@ -4,6 +4,7 @@ import "./globals.css"
 import { Providers } from "./providers"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
+import FloatingCTA from "@/components/floating-cta"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className="font-[var(--font-inter)]">
         <Providers>
           <Navbar />
+          <FloatingCTA />
           {children}
           <Footer />
         </Providers>
