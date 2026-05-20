@@ -55,17 +55,17 @@ export default function ContactFormMulti() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <PageHeader title="Contáctanos" subtitle="Agenda una consulta gratuita y llevemos tu proyecto al siguiente nivel." />
+      <PageHeader title="Hablemos de tu proyecto" subtitle="Cuéntanos qué necesitas. Respondemos en menos de 24h, sin compromiso ni tecnicismos." />
       <div className="grid lg:grid-cols-5 gap-8 max-w-6xl mx-auto mt-8">
         {/* Sidebar Info */}
         <motion.div className="lg:col-span-2 space-y-6" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}>
           <GradientBorder><div className="bg-[hsl(var(--card))] rounded-xl p-6">
-            <h3 className="text-xl font-bold text-[hsl(var(--fg))] mb-1">Hablemos de tu proyecto</h3>
-            <p className="text-[hsl(var(--muted-fg))] text-sm mb-4">Responderemos en menos de 24 horas.</p>
+            <h3 className="text-xl font-bold text-[hsl(var(--fg))] mb-1">Estamos aquí para ayudarte</h3>
+            <p className="text-[hsl(var(--muted-fg))] text-sm mb-4">Sin presión. Sin letra pequeña. Solo soluciones claras.</p>
             <div className="space-y-4">
               <div className="flex items-center gap-3 text-[hsl(var(--muted-fg))]"><div className="w-10 h-10 rounded-lg bg-[hsl(var(--primary))/0.15] flex items-center justify-center text-[hsl(var(--primary))]"><Mail className="w-5 h-5" /></div><div><div className="text-sm font-medium text-[hsl(var(--fg))]">Email</div><div>hola@majesticweb.studio</div></div></div>
-              <div className="flex items-center gap-3 text-[hsl(var(--muted-fg))]"><div className="w-10 h-10 rounded-lg bg-[hsl(var(--primary))/0.15] flex items-center justify-center text-[hsl(var(--primary))]"><Phone className="w-5 h-5" /></div><div><div className="text-sm font-medium text-[hsl(var(--fg))]">Teléfono</div><div>+34 612 345 678</div></div></div>
-              <div className="flex items-center gap-3 text-[hsl(var(--muted-fg))]"><div className="w-10 h-10 rounded-lg bg-[hsl(var(--primary))/0.15] flex items-center justify-center text-[hsl(var(--primary))]"><MapPin className="w-5 h-5" /></div><div><div className="text-sm font-medium text-[hsl(var(--fg))]">Oficina</div><div>Madrid, España (Remoto Global)</div></div></div>
+              <div className="flex items-center gap-3 text-[hsl(var(--muted-fg))]"><div className="w-10 h-10 rounded-lg bg-[hsl(var(--primary))/0.15] flex items-center justify-center text-[hsl(var(--primary))]"><Phone className="w-5 h-5" /></div><div><div className="text-sm font-medium text-[hsl(var(--fg))]">Teléfono / WhatsApp</div><div>+34 612 345 678</div></div></div>
+              <div className="flex items-center gap-3 text-[hsl(var(--muted-fg))]"><div className="w-10 h-10 rounded-lg bg-[hsl(var(--primary))/0.15] flex items-center justify-center text-[hsl(var(--primary))]"><MapPin className="w-5 h-5" /></div><div><div className="text-sm font-medium text-[hsl(var(--fg))]">Dónde estamos</div><div>Madrid, España (Trabajamos remoto con toda España)</div></div></div>
             </div>
           </div></GradientBorder>
           <GradientBorder><div className="bg-gradient-to-br from-[hsl(var(--primary))/0.1] to-[hsl(var(--accent))/0.1] border border-[hsl(var(--primary))/0.3] rounded-xl p-6">
@@ -91,7 +91,7 @@ export default function ContactFormMulti() {
                     <h3 className="text-lg font-bold text-[hsl(var(--fg))]">1. Datos de contacto</h3>
                     <div><label className="block text-sm font-medium text-[hsl(var(--fg))] mb-2">Nombre</label><input type="text" value={form.name} onChange={e => setForm({...form, name: e.target.value})} className={inputClass('name')} placeholder="Tu nombre" /></div>
                     {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
-                    <div><label className="block text-sm font-medium text-[hsl(var(--fg))] mb-2">Email</label><input type="email" value={form.email} onChange={e => setForm({...form, email: e.target.value})} className={inputClass('email')} placeholder="tu@email.com" /></div>
+                    <div><label className="block text-sm font-medium text-[hsl(var(--fg))] mb-2">Email</label><input type="email" value={form.email} onChange={e => setForm({...form, email: e.target.value})} className={inputClass('email')} placeholder="Cómo contactarte" /></div>
                     {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
                   </motion.div>
                 )}
@@ -101,11 +101,11 @@ export default function ContactFormMulti() {
                     <div><label className="block text-sm font-medium text-[hsl(var(--fg))] mb-2">¿Qué necesitas?</label>
                       <select value={form.type} onChange={e => setForm({...form, type: e.target.value})} className={`${inputClass('type')} appearance-none`}>
                         <option value="">Selecciona una opción</option>
-                        <option value="web">Sitio Web Corporativo</option>
-                        <option value="ecommerce">E-Commerce</option>
-                        <option value="app">Aplicación Web / SaaS</option>
-                        <option value="3d">Experiencia 3D / Interactiva</option>
-                        <option value="other">Otro</option>
+                        <option value="web">Web para mi negocio</option>
+                        <option value="ecommerce">Tienda online</option>
+                        <option value="app">Aparecer en Google</option>
+                        <option value="3d">Mejorar mi web actual</option>
+                        <option value="other">Otra cosa</option>
                       </select>
                     </div>
                     {errors.type && <p className="text-red-400 text-xs mt-1">{errors.type}</p>}
@@ -121,8 +121,8 @@ export default function ContactFormMulti() {
                 )}
                 {step === 3 && (
                   <motion.div key="step3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }} className="space-y-4">
-                    <h3 className="text-lg font-bold text-[hsl(var(--fg))]">3. Cuéntanos más</h3>
-                    <div><label className="block text-sm font-medium text-[hsl(var(--fg))] mb-2">Detalles del proyecto</label><textarea rows={4} value={form.message} onChange={e => setForm({...form, message: e.target.value})} className={`${inputClass('message')} resize-none`} placeholder="Describe tus objetivos, plazo ideal y cualquier referencia..." /></div>
+                    <h3 className="text-lg font-bold text-[hsl(var(--fg))]">3. Cuéntanos brevemente tu idea</h3>
+                    <div><label className="block text-sm font-medium text-[hsl(var(--fg))] mb-2">Detalles del proyecto</label><textarea rows={4} value={form.message} onChange={e => setForm({...form, message: e.target.value})} className={`${inputClass('message')} resize-none`} placeholder="Ej: Tengo una clínica dental y necesito que los pacientes pidan cita online. Presupuesto orientativo: 1.500€" /></div>
                     {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message}</p>}
                   </motion.div>
                 )}
@@ -136,7 +136,7 @@ export default function ContactFormMulti() {
                 {step < 3 ? (
                   <button type="button" onClick={nextStep} className="px-5 py-2.5 rounded-lg bg-[hsl(var(--primary))] text-[hsl(var(--primary-fg))] hover:bg-[hsl(var(--primary))/0.9] transition-all flex items-center gap-2">Siguiente <ArrowRight className="w-4 h-4" /></button>
                 ) : (
-                  <button type="submit" disabled={status === 'sending'} className="hover-lift btn-press focus-ring px-6 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold shadow-lg shadow-purple-500/20 transition-all flex items-center gap-2">{status === 'sending' ? 'Enviando...' : <>Enviar consulta <Send className="w-4 h-4" /></>}</button>
+                  <button type="submit" disabled={status === 'sending'} className="hover-lift btn-press focus-ring px-6 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold shadow-lg shadow-purple-500/20 transition-all flex items-center gap-2">{status === 'sending' ? 'Enviando...' : <>Enviar mensaje <Send className="w-4 h-4" /></>}</button>
                 )}
               </div>
             </form>

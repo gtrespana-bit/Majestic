@@ -5,27 +5,27 @@ import { PageHeader, GradientBorder } from '@/components/ui-premium'
 import { Search, BarChart3, Code2, FileText, ArrowRight, CheckCircle2 } from 'lucide-react'
 
 const steps = [
-  { icon: <Search className="w-6 h-6" />, title: "Auditoría Técnica", desc: "Detectamos errores de rastreo, indexación, canibalización y estructura que frenan tu crecimiento." },
-  { icon: <FileText className="w-6 h-6" />, title: "Estrategia de Keywords", desc: "Investigamos intención de búsqueda, volumen y competencia para atacar términos con ROI real." },
-  { icon: <Code2 className="w-6 h-6" />, title: "SEO On-Page & Técnico", desc: "Optimizamos meta-tags, schema markup, velocidad, mobile-friendliness y arquitectura de enlaces." },
-  { icon: <BarChart3 className="w-6 h-6" />, title: "Contenido y Autoridad", desc: "Creamos y estructuramos contenido que responde a consultas reales y atrae backlinks naturales." }
+  { icon: <Search className="w-6 h-6" />, title: "Vemos qué busca tu clientela", desc: "Analizamos qué escriben en Google, qué hace tu competencia y dónde hay oportunidad real para ti." },
+  { icon: <FileText className="w-6 h-6" />, title: "Ajustamos tu página para Google", desc: "Preparamos títulos, textos, velocidad y estructura para que Google la entienda y la muestre." },
+  { icon: <Code2 className="w-6 h-6" />, title: "Escribimos textos que atraen visitas", desc: "Páginas y artículos que responden preguntas reales. Sin relleno. Con intención de compra o reserva." },
+  { icon: <BarChart3 className="w-6 h-6" />, title: "Te contamos los resultados cada mes", desc: "Recibes un informe claro. Qué funciona, qué mejoramos y cuántos contactos llegan desde Google." }
 ]
 const faqs = [
-  { q: "¿Cuánto tiempo tarda en verse resultados con SEO?", a: "El SEO es una estrategia a medio-largo plazo. Los primeros movimientos técnicos se reflejan en 2-4 semanas. El crecimiento orgánico sostenido suele consolidarse entre los 3 y 6 meses." },
-  { q: "¿El SEO sigue funcionando en 2024/2025?", a: "Más que nunca. Google prioriza la experiencia del usuario, la autoridad temática y la calidad del contenido. Las webs optimizadas técnicamente y con contenido relevante dominan los resultados." },
-  { q: "¿Trabajáis con WordPress, Shopify o desarrollos a medida?", a: "Sí. Adaptamos la estrategia a tu stack. En WordPress optimizamos plugins, estructura y rendimiento. En Shopify trabajamos con themes personalizados y apps de SEO. En desarrollos Next.js/React aplicamos SEO técnico avanzado (SSR, ISR, metadata API)." }
+  { q: "¿Cuánto tarda en funcionar?", a: "Los primeros movimientos se ven en 3-6 semanas. El crecimiento estable llega en 2-4 meses. Es una inversión, no un gasto." },
+  { q: "¿Necesito saber de informática?", a: "Para nada. Nosotros nos encargamos de todo. Tú solo nos cuentas cómo es tu negocio y qué quieres conseguir." },
+  { q: "¿Sirve para negocios locales?", a: "Sí, especialmente. Optimizamos tu ficha de Google, tu zona y las búsquedas de 'cerca de mí'." }
 ]
 
 export default function SeoContent() {
   return (
     <div className="container mx-auto px-4 py-8 space-y-20">
-      <PageHeader title="SEO Técnico y Estratégico" subtitle="No basta con que tu web sea bonita. Necesita ser encontrada. Te posicionamos donde tus clientes buscan." />
+      <PageHeader title="Que te encuentren en Google" subtitle="Si tu web no aparece cuando buscan lo que ofreces, estás perdiendo clientes. Hacemos que te vean." />
       <section className="max-w-4xl mx-auto text-center">
-        <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[hsl(var(--fg))]">Por qué el SEO es tu mayor activo digital</h2>
-        <p className="text-[hsl(var(--muted-fg))] leading-relaxed">El <strong>SEO</strong> no es magia. Es ingeniería aplicada a la visibilidad. Mientras la publicidad de pago se apaga, el SEO construye <strong>tráfico orgánico recurrente</strong>. Optimizamos cada capa: infraestructura, semántica y contenido.</p>
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[hsl(var(--fg))]">Por qué importa aparecer en Google</h2>
+        <p className="text-[hsl(var(--muted-fg))] leading-relaxed">El 80% de las personas buscan en internet antes de comprar o reservar. Si no estás ahí, eligen a otro. No se trata de trucos, sino de estructurar bien tu web y usar las palabras que busca tu clientela.</p>
       </section>
       <section>
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-[hsl(var(--fg))]">Nuestro Proceso</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-[hsl(var(--fg))]">Cómo lo hacemos</h2>
         <div className="grid md:grid-cols-2 gap-6">
           {steps.map((s, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
@@ -50,9 +50,9 @@ export default function SeoContent() {
         </div>
       </section>
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center py-10">
-        <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[hsl(var(--fg))]">¿Tu web no aparece en Google?</h2>
-        <p className="text-[hsl(var(--muted-fg))] max-w-xl mx-auto mb-6">Auditoría gratuita de 15 puntos + plan de acción.</p>
-        <Link href="/contacto"><button className="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold shadow-xl shadow-purple-500/20 group">Solicitar Auditoría SEO <ArrowRight className="inline ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" /></button></Link>
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[hsl(var(--fg))]">¿Tu web no aparece cuando te buscan?</h2>
+        <p className="text-[hsl(var(--muted-fg))] max-w-xl mx-auto mb-6">Te decimos exactamente qué falta y cómo solucionarlo. Sin compromiso.</p>
+        <Link href="/contacto"><button className="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold shadow-xl shadow-purple-500/20 group">Quiero aparecer en Google <ArrowRight className="inline ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" /></button></Link>
       </motion.div>
          {/* 🔗 ENLAZADO INTERNO ESTRATÉGICO */}
       <section className="max-w-4xl mx-auto pt-10 border-t border-[hsl(var(--border))]">

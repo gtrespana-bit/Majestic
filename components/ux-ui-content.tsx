@@ -5,19 +5,19 @@ import { PageHeader, GradientBorder } from '@/components/ui-premium'
 import { Layout, MousePointer2, Eye, Users, ArrowRight } from 'lucide-react'
 
 const pillars = [
-  { icon: <Users className="w-6 h-6" />, title: "Investigación de Usuario", desc: "Entendemos tu audiencia: comportamientos, dolores, motivaciones y flujos de decisión reales." },
-  { icon: <Layout className="w-6 h-6" />, title: "Arquitectura de Información", desc: "Estructuramos contenido y navegación para que encontrar lo necesario sea instintivo, no un puzzle." },
-  { icon: <Eye className="w-6 h-6" />, title: "Diseño Visual & Branding", desc: "Tipografía, color, espaciado y jerarquía visual alineados con tu identidad y optimizados para legibilidad." },
-  { icon: <MousePointer2 className="w-6 h-6" />, title: "Prototipado & Testing", desc: "Iteramos en Figma antes de escribir una línea de código. Validamos con usuarios reales para reducir riesgos." }
+  { icon: <Users className="w-6 h-6" />, title: "Entendemos a tu cliente", desc: "No diseñamos para nosotros. Diseñamos para quien va a comprar, reservar o contactarte." },
+  { icon: <Layout className="w-6 h-6" />, title: "Todo a 3 clics o menos", desc: "Si el visitante no encuentra lo que busca rápido, se va. Estructuramos todo para que sea intuitivo." },
+  { icon: <Eye className="w-6 h-6" />, title: "Diseño que genera confianza", desc: "Colores, fotos y textos alineados con tu negocio. Profesional, limpio y creíble desde el primer segundo." },
+  { icon: <MousePointer2 className="w-6 h-6" />, title: "Probamos antes de lanzar", desc: "No adivinamos. Validamos con personas reales para asegurar que todo funciona como debe." }
 ]
 
 export default function UxUiContent() {
   return (
     <div className="container mx-auto px-4 py-8 space-y-20">
-      <PageHeader title="Diseño UX/UI Centrado en Conversión" subtitle="Una web bonita que no vende es decoración. Diseñamos experiencias que guían, convencen y convierten." />
+      <PageHeader title="Diseño claro que no confunde" subtitle="Una web bonita no sirve si el visitante no sabe dónde clicar. Hacemos que todo sea intuitivo y directo al contacto o la compra." />
       <section className="max-w-4xl mx-auto text-center">
-        <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[hsl(var(--fg))]">UX vs UI: ¿Por qué importan ambas?</h2>
-        <p className="text-[hsl(var(--muted-fg))] leading-relaxed mb-6">El <strong>UX</strong> se preocupa por cómo se siente y navega el usuario. El <strong>UI</strong> se encarga de cómo se ve y comunica visualmente. Juntos, reducen la tasa de rebote y disparan las conversiones.</p>
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[hsl(var(--fg))]">¿Por qué algunas webs no venden?</h2>
+        <p className="text-[hsl(var(--muted-fg))] leading-relaxed mb-6">Porque están pensadas para el dueño, no para el cliente. Menús infinitos, textos largos o botones escondidos matan las ventas. Nosotros eliminamos lo que sobra y dejamos solo lo necesario.</p>
       </section>
       <section>
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-[hsl(var(--fg))]">Los 4 Pilares de Nuestro Diseño</h2>
@@ -34,9 +34,9 @@ export default function UxUiContent() {
         </div>
       </section>
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center py-10">
-        <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[hsl(var(--fg))]">¿Tu web pierde visitantes por mala usabilidad?</h2>
-        <p className="text-[hsl(var(--muted-fg))] max-w-xl mx-auto mb-6">Auditoría UX gratuita + propuesta de rediseño centrada en objetivos.</p>
-        <Link href="/contacto"><button className="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold shadow-xl shadow-purple-500/20 group">Solicitar Auditoría UX <ArrowRight className="inline ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" /></button></Link>
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[hsl(var(--fg))]">¿Tu web pierde visitantes por ser confusa?</h2>
+        <p className="text-[hsl(var(--muted-fg))] max-w-xl mx-auto mb-6">Te decimos qué frena a tus clientes y cómo solucionarlo. Rápido y claro.</p>
+        <Link href="/contacto"><button className="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold shadow-xl shadow-purple-500/20 group">Quiero una web clara <ArrowRight className="inline ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" /></button></Link>
       </motion.div>
             {/* 🔗 ENLAZADO INTERNO ESTRATÉGICO */}
       <section className="max-w-4xl mx-auto pt-10 border-t border-[hsl(var(--border))]">
